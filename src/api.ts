@@ -3,7 +3,7 @@
  * Modifiez API_BASE_URL pour pointer vers votre serveur backend
  */
 
-import type { UploadResponse, PlagiatResponse,LoginRequest, LoginResponse} from "./types";
+import type { UploadResponse, PlagiatResponse,LoginRequest, LoginResponse, Oeuvre} from "./types";
 
 
 // URL de base de l'API - À MODIFIER selon votre configuration
@@ -68,6 +68,19 @@ export async function uploadOeuvre(formData: FormData): Promise<UploadResponse> 
 
   return response.json();
 }
+
+
+export async function getOeuvres(): Promise<Oeuvre[]> {
+  const response = await fetch(`${API_BASE_URL}/oeuvres`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail || "Erreur lors du chargement des œuvres");
+  }
+  return response.json();
+}
+
 
 /**
  * Vérification de plagiat
