@@ -10,4 +10,19 @@ export interface UploadResponse {
     rapport_pdf: string;
     similarite?: number;
   }
-  
+
+
+
+// Login
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  access_token: string;
+  token_type: string;
+  user_id?: string;
+  email?: string;
+}

@@ -3,11 +3,53 @@
  * Modifiez API_BASE_URL pour pointer vers votre serveur backend
  */
 
-import type { UploadResponse, PlagiatResponse} from "./types";
+import type { UploadResponse, PlagiatResponse,LoginRequest, LoginResponse} from "./types";
 
 
 // URL de base de l'API - À MODIFIER selon votre configuration
 export const API_BASE_URL = "http://127.0.0.1:8000";
+
+
+/**
+ * Connexion de l'utilisateur
+ */
+export async function login(credentials: LoginRequest): Promise<LoginResponse> {
+  const response = await fetch(`${API_BASE_URL}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail || "Identifiants invalides");
+  }
+
+  return response.json();
+}
+
+
+/**
+ * Demande de réinitialisation du mot de passe
+ */
+export async function forgotPassword(payload: { email: string }): Promise<{ message: string }> {
+  const response = await fetch(`${API_BASE_URL}/forgot-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail || "Impossible d'envoyer le lien de réinitialisation");
+  }
+
+  return response.json();
+}
 
 
 /**
