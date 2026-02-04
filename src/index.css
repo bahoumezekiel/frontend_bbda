@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* 
+ * OeuvreGuard - Couleurs du Burkina Faso
+ * Vert: #009639 | Rouge: #EF2B2D | Jaune: #FCD116
+ */
+
+:root {
+  --faso-green: #009639;
+  --faso-red: #EF2B2D;
+  --faso-yellow: #FCD116;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Gradient tricolore */
+.gradient-faso {
+  background: linear-gradient(90deg, #EF2B2D 0%, #EF2B2D 33%, #FCD116 33%, #FCD116 66%, #009639 66%, #009639 100%);
+}
+
+
+
+/* .gradient-faso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: #EF2B2D;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.gradient-faso::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: #009e49;
+}
+.gradient-faso::before {
+  content: "★";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: yellow;
+  font-size: 18px;
+  line-height: 1;
+  z-index: 1;
+} */
+
+/* ===== Drapeau Burkina Faso ===== */
+.burkina-flag {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: #EF2B2D;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.burkina-flag::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: #009e49;
+}
+.burkina-flag::before {
+  content: "★";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: yellow;
+  font-size: 18px;
+  line-height: 1;
+  z-index: 1;
+}
+
+/* Bouton primaire */
+.btn-primary {
+  background-color: #009639;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+
+.btn-primary:hover {
+  background-color: #007a2e;
+  box-shadow: 0 4px 12px rgba(0, 150, 57, 0.3);
+}
+
+.btn-primary:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Bouton secondaire */
+.btn-secondary {
+  background-color: white;
+  color: #009639;
+  border: 2px solid #009639;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #009639;
+  color: white;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #009639;
+  box-shadow: 0 0 0 3px rgba(0, 150, 57, 0.1);
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+  resize: vertical;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #009639;
+  box-shadow: 0 0 0 3px rgba(0, 150, 57, 0.1);
+}
+
+/* Label */
+.label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #334155;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
