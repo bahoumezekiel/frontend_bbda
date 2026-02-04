@@ -3,7 +3,7 @@
  * Modifiez API_BASE_URL pour pointer vers votre serveur backend
  */
 
-import type { UploadResponse, PlagiatResponse,LoginRequest, LoginResponse, Oeuvre} from "./types";
+import type { UploadResponse, PlagiatResponse,LoginRequest, LoginResponse, Oeuvre, Plagiat, User} from "./types";
 
 
 // URL de base de l'API - À MODIFIER selon votre configuration
@@ -99,6 +99,18 @@ export async function verifierPlagiat(formData: FormData): Promise<PlagiatRespon
   return response.json();
 }
 
+export async function getPlagiats(): Promise<Plagiat[]> {
+  const response = await fetch(`${API_BASE_URL}/plagiats`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail || "Erreur lors du chargement des plagiats");
+  }
+  return response.json();
+}
+
+
 /**
  * Obtenir l'URL du rapport PDF
  */
@@ -114,4 +126,53 @@ export function getCertificatUrl(certificatPath: string): string {
     return certificatPath;
   }
   return `${API_BASE_URL}${certificatPath}`;
+}
+
+
+
+// LIST : récupérer tous les utilisateurs
+export async function getUsers(): Promise<User[]> {
+  const response = await fetch(`${API_BASE_URL}/users`, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) {
+    throw new Error("Erreur lors du chargement des utilisateurs");
+  }
+  return response.json();
+}
+
+// CREATE : ajouter un utilisateur
+export async function addUser(user: Omit<User, "id">): Promise<User> {
+  const response = await fetch(`${API_BASE_URL}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+  if (!response.ok) {
+    throw new Error("Erreur lors de l'ajout de l'utilisateur");
+  }
+  return response.json();
+}
+
+// UPDATE : modifier un utilisateur
+export async function updateUser(user: User): Promise<User> {
+  const response = await fetch(`${API_BASE_URL}/users/${user.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+  if (!response.ok) {
+    throw new Error("Erreur lors de la mise à jour de l'utilisateur");
+  }
+  return response.json();
+}
+
+// DELETE : supprimer un utilisateur
+export async function deleteUser(id: number): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Erreur lors de la suppression de l'utilisateur");
+  }
 }

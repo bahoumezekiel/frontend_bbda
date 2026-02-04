@@ -10,6 +10,7 @@ import {
   LogOut,
   Settings,
   User,
+ Users,
 } from "lucide-react";
 
 export default function SidebarLayout() {
@@ -94,6 +95,17 @@ export default function SidebarLayout() {
             >
               <BarChart3 className="w-5 h-5" />
               {!collapsed && <span>Stats</span>}
+            </Link>
+            <Link
+              to="/users"
+              className={`flex items-center gap-3 px-4 py-2 rounded-lg transition ${
+                isActive("/users")
+                  ? "bg-[#009639] text-white"
+                  : "text-slate-600 hover:bg-slate-100"
+              }`}
+            >
+              <Users className="w-5 h-5" />
+              {!collapsed && <span>Users</span>}
             </Link>
           </nav>
         </div>

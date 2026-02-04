@@ -11,6 +11,7 @@ import Dashboard from "./pages/admin /Dashboard";
 import Oeuvres from "./pages/admin /Oeuvres";
 import Plagiats from "./pages/admin /Plagiats";
 import Stats from "./pages/admin /Stats";
+import Users from "./pages/admin /Users";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/oeuvres" element={<Oeuvres />} />
               <Route path="/plagiats" element={<Plagiats />} />
               <Route path="/stats" element={<Stats />} />
+              <Route path="/users" element={<Users />} />
             </Route>
           </Routes>
         </main>
