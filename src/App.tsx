@@ -7,11 +7,11 @@ import Plagiat from "./pages/Plagiat";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import SidebarLayout from "./components/SidebarLayout";
-import Dashboard from "./pages/admin /Dashboard";
-import Oeuvres from "./pages/admin /Oeuvres";
-import Plagiats from "./pages/admin /Plagiats";
-import Stats from "./pages/admin /Stats";
-import Users from "./pages/admin /Users";
+import Dashboard from "./pages/admin/Dashboard";
+import Oeuvres from "./pages/admin/Oeuvres";
+import Plagiats from "./pages/admin/Plagiats";
+import Stats from "./pages/admin/Stats";
+import Users from "./pages/admin/Users";
 
 function App() {
   return (
