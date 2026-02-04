@@ -27,6 +27,9 @@ export interface LoginResponse {
 
 // Typage des données
 export interface Oeuvre {
+  score_ia: string;
+  ia_detectee: string;
+  date_creation: string;
   id: string;
   type_oeuvre: string;
   titre: string;
@@ -36,7 +39,6 @@ export interface Oeuvre {
   fichier_nom: string;
   date_enregistrement: string;
 }
-
 
 export const seedOeuvres: Oeuvre[] = [
   {
@@ -48,6 +50,9 @@ export const seedOeuvres: Oeuvre[] = [
     langue: "Français",
     fichier_nom: "soleil_levant.mp3",
     date_enregistrement: "2025-01-15 10:30:00",
+    score_ia: "string",
+    ia_detectee: "string",
+    date_creation: "string",
   },
   {
     id: "TXT-2025-0002",
@@ -58,6 +63,9 @@ export const seedOeuvres: Oeuvre[] = [
     langue: "Français",
     fichier_nom: "gouvernance.pdf",
     date_enregistrement: "2025-01-20 14:12:10",
+    score_ia: "string",
+    ia_detectee: "string",
+    date_creation: "string",
   },
   {
     id: "MUS-2025-0003",
@@ -68,5 +76,8 @@ export const seedOeuvres: Oeuvre[] = [
     langue: "Mooré",
     fichier_nom: "burkina_vibes.mp3",
     date_enregistrement: "2025-01-22 22:23:39",
+    score_ia: "string",
+    ia_detectee: "string",
+    date_creation: "string",
   },
 ];

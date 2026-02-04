@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { AlertCircle, Loader2, BarChart3, FileText, Music, Search } from "lucide-react";
+import {
+  AlertCircle,
+  Loader2,
+  BarChart3,
+  FileText,
+  Music,
+  Search,
+} from "lucide-react";
 import { getOeuvres } from "../../api";
 import { seedOeuvres, type Oeuvre } from "../../types";
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export default function Dashboard() {
   const [oeuvres, setOeuvres] = useState<Oeuvre[]>([]);
@@ -13,6 +21,24 @@ export default function Dashboard() {
   const [filterType, setFilterType] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  // Préparer les données pour l’histogramme
+  const chartData = [
+    {
+      type: "Musique",
+      count: oeuvres.filter((o) => o.type_oeuvre === "Musique").length,
+    },
+    {
+      type: "Texte",
+      count: oeuvres.filter((o) => o.type_oeuvre === "Texte").length,
+    },
+    {
+      type: "Autre",
+      count: oeuvres.filter(
+        (o) => o.type_oeuvre !== "Musique" && o.type_oeuvre !== "Texte"
+      ).length,
+    },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +81,6 @@ export default function Dashboard() {
           Dashboard des Œuvres
         </h1>
       </div>
-
       {/* Barre de recherche et filtre */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
@@ -78,7 +103,6 @@ export default function Dashboard() {
           <option value="Texte">Texte</option>
         </select>
       </div>
-
       {/* Error */}
       {error && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3 animate-shake">
@@ -86,7 +110,6 @@ export default function Dashboard() {
           <p className="text-sm text-red-700">{error}</p>
         </div>
       )}
-
       {/* Loading */}
       {isLoading && (
         <div className="flex items-center justify-center py-10 text-slate-600">
@@ -94,7 +117,6 @@ export default function Dashboard() {
           Chargement des données...
         </div>
       )}
-
       {/* Tableau */}
       {!isLoading && (
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
@@ -202,6 +224,30 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
+        </div>
+      )}
+      {/* Histogramme */}{" "}
+      {!isLoading && !error && (
+        <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6">
+          {" "}
+          <h2 className="text-lg font-semibold mb-4">
+            Histogramme par type
+          </h2>{" "}
+          <div className="w-full h-72">
+            {" "}
+            <ResponsiveContainer width="100%" height="100%">
+              {" "}
+              <BarChart
+                data={chartData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+              >
+                {" "}
+                <CartesianGrid strokeDasharray="3 3" /> <XAxis dataKey="type" />{" "}
+                <YAxis /> <Tooltip />{" "}
+                <Bar dataKey="count" fill="#009639" radius={[6, 6, 0, 0]} />{" "}
+              </BarChart>{" "}
+            </ResponsiveContainer>{" "}
+          </div>{" "}
         </div>
       )}
     </div>
